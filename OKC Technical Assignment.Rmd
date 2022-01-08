@@ -1,0 +1,195 @@
+---
+title: "OKC Technical Assesment"
+author: "Jacob Becker"
+date: "1/8/2022"
+output: html_document
+---
+
+```{r}
+setwd("C:/Users/19044/Desktop/OKC Technical")
+```
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+```{r}
+basketballdf <- read_csv("shots_data.csv")
+```
+
+#Team A
+
+```{r}
+#2 point shots for team A
+
+pt2a <- basketballdf %>%
+  filter(team == 'Team A') %>%
+  filter(x < 22) %>%
+  filter(x > -22) %>%
+  filter((sqrt((x^2)+(y^2))) <= 23.75)
+
+count(pt2a)
+
+#Count of 170 two point shots attempted
+170/280
+```
+
+
+```{r}
+#Noncorner three for team A
+nc3a <- basketballdf %>%
+  filter(team == 'Team A') %>%
+  filter(y > 7.8) %>% 
+  filter((sqrt((x^2)+(y^2))) > 23.75)
+
+count(nc3a)
+
+#Count of 90 noncorner three point shots attempted
+90/280
+```
+
+  
+```{r}
+#Corner Three for team A
+
+c3a <- basketballdf %>%
+  filter(team == 'Team A') %>%
+  filter(y < 7.8) %>%
+  filter(x > 22 | x < -22)
+
+count(c3a)
+
+#Count of 20 corner 3's attemtped
+
+20/280
+
+```
+
+```{r}
+#eFG in 2pt zone for team A
+
+efg2a <- pt2a %>%
+  filter(fgmade == 1)
+
+count(efg2a)
+
+#count of 68 field goals made out of 170 two point attempts
+
+68/170
+
+```
+
+```{r}
+#eFG in nc3 zone for team A
+
+efgnc3a <- nc3a %>%
+  filter(fgmade == 1)
+
+count(efgnc3a)
+
+#Count of 29 field goals made in the nc3 zone
+
+(29 + (0.5*29))/90
+
+```
+
+```{r}
+efgc3a <- c3a %>%
+  filter(fgmade == 1)
+
+count(efgc3a)
+
+#Count of 8 corner 3's made
+
+(8 + (0.5*8))/20
+```
+
+
+#Team B
+
+
+```{r}
+#2 point shots for team B
+
+pt2b <- basketballdf %>%
+  filter(team == 'Team B') %>%
+  filter(x < 22) %>%
+  filter(x > -22) %>%
+  filter((sqrt((x^2)+(y^2))) < 23.75)
+
+count(pt2b)
+#Count of 163 two point field goals out of 280
+
+163/280
+```
+
+```{r}
+#Noncorner three for team b
+nc3b <- basketballdf %>%
+  filter(team == 'Team B') %>%
+  filter(y > 7.8) %>% 
+  filter((sqrt((x^2)+(y^2))) >= 23.75)
+
+count(nc3b)
+
+#Count of 96 noncorner threes attempted 
+
+96/280
+```
+
+```{r}
+#Corner Three for team b
+
+c3b <- basketballdf %>%
+  filter(team == 'Team B') %>%
+  filter(y < 7.8) %>%
+  filter(x > 22 | x < -22)
+
+count(c3b)
+
+#Count of 21 corner three's attempted
+
+21/280
+```
+
+```{r}
+#eFG 2 points team B
+
+efg2b <- pt2b %>%
+  filter(fgmade == 1)
+
+count(efg2b)
+
+#Count of 75 two point shots made
+
+75/163
+```
+
+```{r}
+#eFG nc3 team b
+
+efgnc3b <- nc3b %>%
+  filter(fgmade == 1)
+
+count(efgnc3b)
+
+#Count of 35 field goals made in the nc3 zone
+
+(35 + (0.5*35))/96
+```
+
+
+```{r}
+#eFG c3 team b
+
+efgc3b <- c3b %>%
+  filter(fgmade == 1)
+
+count(efgc3b)
+
+#Count of 5 corner 3's made
+
+(5 + (0.5*5))/21
+```
+
