@@ -1,4 +1,4 @@
-# OKC-Technical-Assesment
+# OKC-Technical-Assessment
 
 ****About this repo****
 
