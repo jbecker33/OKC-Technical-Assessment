@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r}
-setwd("C:/Users/19044/Desktop/OKC Technical")
+setwd("SET YOUR WD HERE")
 ```
 
 ```{r}
